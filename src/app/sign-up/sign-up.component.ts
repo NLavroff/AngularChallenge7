@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../User';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -9,12 +10,10 @@ import { User } from '../User';
 })
 export class SignUpComponent {
 
-  model: User = new User();
-  
-  constructor() { }
+  user: User = new User();
 
-  onSubmit() {
-    console.log('form submitted');
+  onSubmit(myForm: NgForm) {
+    console.log(myForm.value);
   }
 
 }

@@ -1,4 +1,4 @@
-<form (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm">
+<form (ngSubmit)="myForm.valid && onSubmit(myForm)" #myForm="ngForm">
   <div>
     Form submitted ? {{ myForm.submitted }} Form valid ? {{ myForm.valid }} Form
     invalid ? {{ myForm.valid }}
@@ -9,7 +9,7 @@
     <input
       name="email"
       type="email"
-      [(ngModel)]="model.email"
+      [(ngModel)]="user.email"
       #email="ngModel"
       required email
     />
@@ -27,7 +27,7 @@
       name="firstname"
       type="text"
       required
-      [(ngModel)]="model.firstname"
+      [(ngModel)]="user.firstname"
       #firstname="ngModel"
       minlength="3"
       maxlength="15"
@@ -46,7 +46,7 @@
       name="lastname"
       type="text"
       required
-      [(ngModel)]="model.lastname"
+      [(ngModel)]="user.lastname"
       #lastname="ngModel"
       minlength="3"
       maxlength="15"
@@ -64,7 +64,7 @@
     <input
       name="password"
       type="password"
-      [(ngModel)]="model.password"
+      [(ngModel)]="user.password"
       #password="ngModel"
       required
     />
@@ -76,3 +76,12 @@
   </div>
   <button type="submit">Submit</button>
 </form>
+
+<div *ngIf="myForm.submitted">
+  <p>Email value: {{ email.value }}</p>
+  <p>First name value: {{ firstname.value }}</p>
+  <p>Last name value: {{ lastname.value }}</p>
+    <div *ngIf="myForm.valid">
+      <p>Le formulaire est bien enregistré !</p>
+    </div>
+</div>
