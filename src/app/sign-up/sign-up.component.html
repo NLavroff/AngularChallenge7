@@ -1,0 +1,78 @@
+<form (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm">
+  <div>
+    Form submitted ? {{ myForm.submitted }} Form valid ? {{ myForm.valid }} Form
+    invalid ? {{ myForm.valid }}
+  </div>
+
+  <div>
+    <label for="email">Mail</label>
+    <input
+      name="email"
+      type="email"
+      [(ngModel)]="model.email"
+      #email="ngModel"
+      required email
+    />
+    <div *ngIf="myForm.submitted">
+      <div *ngIf="email.errors">
+        <span *ngIf="email.errors['required']">L’email est requis</span>
+        <span *ngIf="email.invalid">L’email est invalide</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="firstname">First Name</label>
+    <input
+      name="firstname"
+      type="text"
+      required
+      [(ngModel)]="model.firstname"
+      #firstname="ngModel"
+      minlength="3"
+      maxlength="15"
+    />
+    <div *ngIf="myForm.submitted">
+      <div *ngIf="firstname.errors">
+        <span *ngIf="firstname.errors['required']">Le champ firstname est requis</span>
+        <span *ngIf="firstname.errors['minlength']">Le champ doit comporter minimum 3 caractères</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="lastname">Last Name</label>
+    <input
+      name="lastname"
+      type="text"
+      required
+      [(ngModel)]="model.lastname"
+      #lastname="ngModel"
+      minlength="3"
+      maxlength="15"
+    />
+    <div *ngIf="myForm.submitted">
+      <div *ngIf="lastname.errors">
+        <span *ngIf="lastname.errors['required']">Le champ lastname est requis</span>
+        <span *ngIf="lastname.errors['minlength']">Le champ doit comporter minimum 3 caractères</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input
+      name="password"
+      type="password"
+      [(ngModel)]="model.password"
+      #password="ngModel"
+      required
+    />
+    <div *ngIf="myForm.submitted">
+      <div *ngIf="password.errors">
+        <span *ngIf="password.errors.required">Le champ password est requis</span>
+      </div>
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+</form>
